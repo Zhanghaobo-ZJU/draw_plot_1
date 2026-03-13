@@ -12,6 +12,21 @@
 
 通常用于机器学习和深度学习中，帮助理解模型提取的特征如何区分不同类别的样本。
 
+## 可视化效果展示
+
+下面是使用不同降维方法生成的演示图，展示了5个类别在特征空间中的分布情况：
+
+<table>
+  <tr>
+    <td align="center"><b>PCA 降维 (2D)</b><br><img src="main/outputs/demo_pca_2d.png" width="400"/><br><i>PCA降维保留了数据的全局结构，但类别之间的分离度不如其他方法明显。</i></td>
+    <td align="center"><b>t-SNE 降维 (2D)</b><br><img src="main/outputs/demo_tsne_2d.png" width="400"/><br><i>t-SNE更注重保留局部结构，能够更好地分离不同类别。</i></td>
+  </tr>
+  <tr>
+    <td align="center"><b>UMAP 降维 (2D)</b><br><img src="main/outputs/demo_umap_2d.png" width="400"/><br><i>UMAP兼顾了局部和全局结构，计算效率高于t-SNE。</i></td>
+    <td align="center"><b>t-SNE 降维 (3D)</b><br><img src="main/outputs/demo_tsne_3d.png" width="400"/><br><i>3D可视化提供了额外的维度信息，可以更全面地展示类别间的分离情况。</i></td>
+  </tr>
+</table>
+
 ## 安装
 
 ```bash
@@ -67,3 +82,11 @@ NPZ文件应包含两个数组：
 - 2D或3D视图展示降维后的特征分布
 - 图像包含图例和标题
 - 保存到指定的输出路径
+
+## 降维方法比较
+
+| 方法 | 优点 | 缺点 | 适用场景 |
+|------|------|------|----------|
+| PCA | 计算快速，保留全局结构 | 线性方法，无法捕捉非线性关系 | 初步数据探索，高维数据快速可视化 |
+| t-SNE | 很好地保留局部结构，类别分离效果好 | 计算较慢，不保留全局结构 | 需要观察类别聚类情况，中小规模数据集 |
+| UMAP | 兼顾局部和全局结构，速度快于t-SNE | 参数调优较复杂 | 大规模数据集，需要平衡局部和全局结构 |
